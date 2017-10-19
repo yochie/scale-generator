@@ -36,18 +36,18 @@ lpc = lily.translate.LilypondConverter()
 for s in allScales:
     title = """'''""" + s.getTonic().name.replace("#","+") + " " + s.type + """'''\n"""
     lynote = lpc.lyPitchFromPitch(s.getTonic()).noteNamePitch
-    attribute0 = "<noinclude>[[Category:Gamme]]</noinclude>\n"
-    attribute1 = """{{#set: Est une gamme du mode=""" + s.type + "}}\n"
+    attributes = []
+    attributes.append("<noinclude>[[Category:Gamme]]</noinclude>\n")
+    attribute.append("""{{#set: Est une gamme du mode=""" + s.type + "}}\n")
     if s.getTonic().alter == 1.0 :
         accidental = "+"
     elif s.getTonic().alter == -1.0:
         accidental = "-"
     else:
         accidental = "none"
-    attribute2 = """{{#set: A l accent=""" + accidental + "}}\n"
-    attribute3 = """{{#set: A la racine=""" + s.getTonic().name[0] + "}}\n"
-    attributes = attribute0 + attribute1 + attribute2 + attribute3
-    htmltext = sep + title + attributes + """<score vorbis="1">\\relative """ + lynote + "'" + " { \\key " + lynote + " \\" + s.type + " " + " ".join([lpc.lyPitchFromPitch(p).noteNamePitch + "4" for p in s.getPitches()]) + " }</score>\n" + sep
+    attribute.append("""{{#set: A l accent=""" + accidental + "}}\n")
+    attributes.append("""{{#set: A la racine=""" + s.getTonic().name[0] + "}}\n")
+    htmltext = sep + title + "".join(attributes) + """<score vorbis="1">\\relative """ + lynote + "'" + " { \\key " + lynote + " \\" + s.type + " " + " ".join([lpc.lyPitchFromPitch(p).noteNamePitch + "4" for p in s.getPitches()]) + " }</score>\n" + sep
     
     fh.write(htmltext)
     print(htmltext)
