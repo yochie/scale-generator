@@ -1,0 +1,16 @@
+# Ignore everything
+*
+# Don't ignore directories, so we can recurse into them
+!*/
+externals/
+scripts/i18n/
+scripts/archive/
+scripts/maintenance/
+# Don't ignore .gitignore and *.foo files
+!.gitignore
+!scripts/userscripts/music_scale_gen.py
+!README
+!user-config.py
+!user-config.py.redraw
+!pywikibot/families/redraw_family.py
+!pywikibot/families/vdj_family.py
