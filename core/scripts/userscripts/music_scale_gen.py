@@ -35,9 +35,9 @@ for s in allScales:
     base = "http://leviolondejos.wiki/index.php?title=Spécial:AjouterDonnées/Tonalité"
     qstring = "&Tonalité[A la racine]=" + s.getTonic().name[0]
     if s.getTonic().alter == 1.0 :
-        accidental = "+"
+        accidental = "is"
     elif s.getTonic().alter == -1.0:
-        accidental = "-"
+        accidental = "es"
     else:
         accidental = "none"
     qstring += "&Tonalité[A l accent]=" + accidental
