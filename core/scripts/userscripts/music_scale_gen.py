@@ -34,18 +34,18 @@ for currentScale in baseScales:
     
 lpc = lily.translate.LilypondConverter()
 for s in allScales:
-    title = """'''""" + s.getTonic().name.replace("#","+") + " " + s.type + """'''\n"""
+    title = """'''""" + s.getTonic().name.replace("#","is").replace("-", "es") + " " + s.type + """'''\n"""
     lynote = lpc.lyPitchFromPitch(s.getTonic()).noteNamePitch
     attributes = []
     attributes.append("<noinclude>[[Category:Gamme]]</noinclude>\n")
-    attribute.append("""{{#set: Est une gamme du mode=""" + s.type + "}}\n")
+    attributes.append("""{{#set: Est une gamme du mode=""" + s.type + "}}\n")
     if s.getTonic().alter == 1.0 :
-        accidental = "+"
+        accidental = "is"
     elif s.getTonic().alter == -1.0:
-        accidental = "-"
+        accidental = "es"
     else:
         accidental = "none"
-    attribute.append("""{{#set: A l accent=""" + accidental + "}}\n")
+    attributes.append("""{{#set: A l accent=""" + accidental + "}}\n")
     attributes.append("""{{#set: A la racine=""" + s.getTonic().name[0] + "}}\n")
     htmltext = sep + title + "".join(attributes) + """<score vorbis="1">\\relative """ + lynote + "'" + " { \\key " + lynote + " \\" + s.type + " " + " ".join([lpc.lyPitchFromPitch(p).noteNamePitch + "4" for p in s.getPitches()]) + " }</score>\n" + sep
     
