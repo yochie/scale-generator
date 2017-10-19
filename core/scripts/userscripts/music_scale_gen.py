@@ -47,7 +47,7 @@ for s in allScales:
     attribute2 = """{{#set: A l accent=""" + accidental + "}}\n"
     attribute3 = """{{#set: A la racine=""" + s.getTonic().name[0] + "}}\n"
     attributes = attribute0 + attribute1 + attribute2 + attribute3
-    htmltext = sep + title + attributes + """<score vorbis="1">\\relative """ + lynote + " { \\key " + lynote + " \\" + s.type + " " + " ".join([lpc.lyPitchFromPitch(p).noteNamePitch + "4" for p in s.getPitches()]) + " }</score>\n" + sep
+    htmltext = sep + title + attributes + """<score vorbis="1">\\relative """ + lynote + "'" + " { \\key " + lynote + " \\" + s.type + " " + " ".join([lpc.lyPitchFromPitch(p).noteNamePitch + "4" for p in s.getPitches()]) + " }</score>\n" + sep
     
     fh.write(htmltext)
     print(htmltext)
